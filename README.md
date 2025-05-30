@@ -8,6 +8,8 @@ This is a template project for Spring Boot applications with a RESTful API struc
 - Spring Boot 3.2.0
 - Spring Data JPA
 - H2 Database (in-memory)
+- Spring Security with CORS support
+- WebClient for API calls
 - Maven
 - Lombok
 - SpringDoc OpenAPI (Swagger)
@@ -22,7 +24,8 @@ src/main/java/com/example/springboottemplate/
 ├── model/               # JPA entities
 ├── dto/                 # Data Transfer Objects
 ├── exception/           # Custom exceptions and error handling
-└── config/              # Configuration classes
+├── config/              # Configuration classes
+├── client/              # API client classes for external services
 ```
 
 ## Getting Started
@@ -92,24 +95,63 @@ Connection details:
 This template follows Spring Boot and Java best practices:
 
 1. Clear separation of concerns (controller, service, repository layers)
-2. DTO pattern for request/response objects
+2. DTO pattern for request/response objects with Lombok
 3. Proper exception handling
 4. API documentation with OpenAPI
 5. Validation using Jakarta Validation
 6. Lombok for reducing boilerplate code
 7. Transactional management
+8. Secure API with Spring Security and CORS configuration
+9. Robust WebClient configuration for external API calls
 
 ## Extending the Template
 
 To add new features or resources:
 
 1. Create entity models in the `model` package
-2. Create DTOs in the `dto` package
+2. Create DTOs in the `dto` package using Lombok annotations
 3. Create repositories in the `repository` package
 4. Create service interfaces and implementations in the `service` package
 5. Create controllers in the `controller` package
+6. For external API integration, use the WebClient configuration in the `client` package
 
 Follow the existing `Task` implementation as a reference.
+
+## WebClient Configuration
+
+The template includes a robust WebClient configuration for making API calls to external services:
+
+- Configurable timeouts and retry mechanisms
+- Comprehensive error handling
+- Automatic retry for transient errors
+- Exponential backoff with jitter
+
+Example properties in `application.properties`:
+```properties
+# WebClient Configuration
+webclient.timeout.connect=60000
+webclient.timeout.response=120
+webclient.timeout.read=120
+webclient.timeout.write=60
+webclient.retry.max=3
+webclient.retry.initialBackoff=2
+webclient.retry.maxBackoff=30
+webclient.maxInMemorySize=2
+```
+
+## Security Configuration
+
+The template includes a basic Spring Security configuration with CORS support:
+
+- Configurable CORS origins
+- Public endpoints for Swagger UI and H2 console
+- Stateless session management
+
+CORS configuration in `application.properties`:
+```properties
+# CORS Configuration
+cors.allowed.origins=http://localhost:3000,http://localhost:8080,https://yourdomain.com
+```
 
 ## License
 
