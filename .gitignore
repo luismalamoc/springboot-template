@@ -34,3 +34,15 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### SQLite ###
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+### H2 Database ###
+*.h2.db
+*.mv.db
+*.trace.db
+*.lock.db

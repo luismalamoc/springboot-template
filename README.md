@@ -36,7 +36,13 @@ src/main/java/com/example/springboottemplate/
 
 1. Clone the repository
 2. Navigate to the project directory
-3. Run the application using Maven:
+3. Build the project (optional but recommended):
+
+```bash
+mvn clean install
+```
+
+4. Run the application using Maven:
 
 ```bash
 mvn spring-boot:run
@@ -46,10 +52,16 @@ The application will start on port 8080 by default.
 
 ## API Documentation
 
-Once the application is running, you can access the Swagger UI at:
+Once the application is running, you can access:
 
+- Swagger UI at:
 ```
 http://localhost:8080/swagger-ui.html
+```
+
+- API docs (OpenAPI JSON) at:
+```
+http://localhost:8080/v3/api-docs
 ```
 
 ## Sample API Endpoints
@@ -98,3 +110,7 @@ To add new features or resources:
 5. Create controllers in the `controller` package
 
 Follow the existing `Task` implementation as a reference.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.

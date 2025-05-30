@@ -10,9 +10,28 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>springboot-template</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>springboot-template</name>
     <description>Spring Boot Template Project</description>
+    
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <id>luismalamoc</id>
+            <name>Luis Alamo</name>
+            <email>luismalamoc@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
     
     <properties>
         <java.version>17</java.version>
