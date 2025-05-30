@@ -1,6 +1,6 @@
 # Spring Boot Template Project
 
-This is a template project for Spring Boot applications with a RESTful API structure. The project includes a sample `/tasks` resource demonstrating best practices for Java and Spring Boot development.
+This is a template project for Spring Boot applications with a RESTful API structure. The project includes a sample `/tasks` resource demonstrating best practices for Java and Spring Boot development. It also integrates with the JSONPlaceholder API for example data.
 
 ## Technologies Used
 
@@ -13,6 +13,7 @@ This is a template project for Spring Boot applications with a RESTful API struc
 - Maven
 - Lombok
 - SpringDoc OpenAPI (Swagger)
+- JSONPlaceholder API integration
 
 ## Project Structure
 
@@ -116,6 +117,43 @@ To add new features or resources:
 6. For external API integration, use the WebClient configuration in the `client` package
 
 Follow the existing `Task` implementation as a reference.
+
+## JSONPlaceholder API Integration
+
+The project includes a client for the [JSONPlaceholder API](https://jsonplaceholder.typicode.com), which provides fake data for testing and prototyping. The integration includes:
+
+- Data Transfer Objects (DTOs) for JSONPlaceholder entities:
+  - `JsonPlaceholderPostDto` - For posts data
+  - `JsonPlaceholderCommentDto` - For comments data
+  - `JsonPlaceholderUserDto` - For users data (including nested Address and Company objects)
+  - `JsonPlaceholderTodoDto` - For todos data
+
+- API Client (`JsonPlaceholderApiClient`) with methods to:
+  - Get all posts, comments, users, and todos
+  - Get individual items by ID
+  - Create, update, and delete posts
+  - Get comments for specific posts
+  - Get todos for specific users
+
+The client is configured to use the base URL "https://jsonplaceholder.typicode.com" by default, which can be overridden through the `api.jsonplaceholder.base-url` property in your application configuration.
+
+Example usage in your service layer:
+
+```java
+@Service
+public class YourService {
+    private final JsonPlaceholderApiClient apiClient;
+    
+    @Autowired
+    public YourService(JsonPlaceholderApiClient apiClient) {
+        this.apiClient = apiClient;
+    }
+    
+    public Mono<List<JsonPlaceholderPostDto>> getAllPosts() {
+        return apiClient.getAllPosts();
+    }
+}
+```
 
 ## WebClient Configuration
 

@@ -6,13 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Example request DTO for API calls
+ * DTO for JSONPlaceholder Post entity
+ * https://jsonplaceholder.typicode.com/posts
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExampleRequest {
-    private String name;
-    private String description;
+public class JsonPlaceholderPostDto {
+    private Long id;
+    private Long userId;
+    private String title;
+    private String body;
 }
